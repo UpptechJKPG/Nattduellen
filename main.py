@@ -76,6 +76,7 @@ np_list = [np1, np2, np3, np4, np5] # List of all NP rings
 
 btn_pin = Pin(15, Pin.IN, Pin.PULL_UP)
 btn_LED = Pin(14, Pin.OUT)
+board_LED = Pin("LED", Pin.OUT)
 
 # ---Beginning of SevSeg---
 @rp2.asm_pio(out_init=[PIO.OUT_LOW]*8, sideset_init=[PIO.OUT_LOW]*4) 
@@ -212,6 +213,7 @@ def assess_choice_sr(choice): # Samples the shift register to detect if the corr
 sm.put(segmentize(0)) # Initializes the SevSeg display with 0 on all digits
 game_state = IDLE # Initializes the game to the IDLE state
 btn_LED.value(1)  # Turns on the button LED to indicate the game is ready
+board_LED.value(1)
 
 # Main loop
 while True:   # Will loop forever when the Pi is powered
